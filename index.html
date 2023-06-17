@@ -1,1 +1,49 @@
-hej med dig
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .brick {
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Antal brikker
+    var numBricks = 10;
+
+    // Opret brikker
+    for (var i = 0; i < numBricks; i++) {
+      var brick = document.createElement('div');
+      brick.className = 'brick';
+      brick.style.top = '50px';
+      brick.style.left = (i * 50) + 'px';
+      document.body.appendChild(brick);
+    }
+
+    // Bevæg brikker
+    function moveBricks() {
+      var bricks = document.getElementsByClassName('brick');
+      var containerWidth = window.innerWidth;
+
+      for (var i = 0; i < bricks.length; i++) {
+        var brick = bricks[i];
+        var left = parseInt(brick.style.left) + 10;
+
+        // Hvis brikken når containerens bredde, gå tilbage til starten
+        if (left > containerWidth) {
+          left = 0;
+        }
+
+        brick.style.left = left + 'px';
+      }
+    }
+
+    // Gentag bevægelsen hvert 100. millisekund
+    setInterval(moveBricks, 100);
+  </script>
+</body>
+</html>
